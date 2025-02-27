@@ -12,9 +12,9 @@ $password = 'root';
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "✅ Connected to database successfully!<br>";
+    echo " Connected to database successfully!<br>";
 } catch (PDOException $e) {
-    die("❌ Connection failed: " . $e->getMessage());
+    die(" Connection failed: " . $e->getMessage());
 }
 
 
@@ -28,13 +28,13 @@ for ($i = 0; $i < 50; $i++) {
         $faker->company,
         $faker->phoneNumber,
         $faker->email,
-        $faker->streetAddress, // More realistic office address
+        $faker->streetAddress, 
         $faker->city,
         'Philippines',
         $faker->postcode
     ]);
 }
-echo "✅ Office Data Inserted!<br>";
+echo " Office Data Inserted!<br>";
 
 
 $office_ids = $pdo->query("SELECT id FROM office")->fetchAll(PDO::FETCH_COLUMN);
@@ -50,7 +50,7 @@ for ($i = 0; $i < 200; $i++) {
         $faker->streetAddress 
     ]);
 }
-echo "✅ Employee Data Inserted!<br>";
+echo " Employee Data Inserted!<br>";
 
 
 $employee_ids = $pdo->query("SELECT id FROM employee")->fetchAll(PDO::FETCH_COLUMN);
@@ -64,11 +64,11 @@ for ($i = 0; $i < 500; $i++) {
         $faker->randomElement($office_ids),   
         $faker->dateTimeThisDecade()->format('Y-m-d'), 
         $faker->word(),
-        $faker->sentence(), // ✅ FIX: Add () to sentence()
+        $faker->sentence(), 
         strtoupper($faker->bothify('DOC###??')) 
     ]);
 }
-echo "✅ Transaction Data Inserted!<br>";
+echo " Transaction Data Inserted!<br>";
 
-echo "<br>🎉 Seeding Completed Successfully!";
+echo "<br> Seeding Completed Successfully!";
 ?>
